@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 14:57:03 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/25 16:20:14 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/12 16:12:00 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,6 +76,8 @@ void				ft_strclr(char *s);
 void				ft_strdel(char **as);
 char				*ft_itoa(int n);
 char				*ft_strrev(char *str);
+size_t  			ft_strnlen(const char *s, size_t maxlen);
+char    			*ft_strndup(const char *s, size_t n);
 typedef struct		s_list
 {
 	void			*content;

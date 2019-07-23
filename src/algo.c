@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strchr.c                                      .::    .:/ .      .::   */
+/*   algo.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/06 21:53:33 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/12 16:47:55 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/07/20 15:58:47 by maegaspa     #+#   ##    ##    #+#       */
+/*   Updated: 2019/07/22 13:50:01 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/filler.h"
 
-char	*ft_strchr(const char *s, int c)
+int             algo(t_cnt *cnt, t_size *size, char *line)
 {
-	unsigned int i;
+	int	**heat;
 
-	i = 0;
-	while (s[i])
+	if (!(tab = malloc(sizeof(int *) * size->mapx)))
+		return (0);
+	while (cnt->x < size->mapx)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i++;
+		if(!(tab[x] = malloc(sizeof(int **) * size->mapy)))
+			return (0);
+		cnt.y = 0;
+		while (cnt->y < size->mapy)
+		{
+			cnt->y++;
+		}
+		cnt->x++;
 	}
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	return (NULL);
 }

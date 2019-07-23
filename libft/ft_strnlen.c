@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strchr.c                                      .::    .:/ .      .::   */
+/*   ft_strnlen.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: maegaspa <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/06 21:53:33 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/12 16:47:55 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/04 15:24:33 by maegaspa     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/04 17:12:32 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strnlen(const char *s, size_t maxlen)
 {
-	unsigned int i;
+	size_t	len;
 
-	i = 0;
-	while (s[i])
+	len = 0;
+	while (len < maxlen)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i++;
+		if (!*s)
+			return (0);
+		len++;
+		s++;
 	}
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	return (NULL);
+	return (len);
 }

@@ -6,36 +6,44 @@
 #    By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/05/27 14:55:34 by maegaspa     #+#   ##    ##    #+#        #
-#    Updated: 2019/05/27 18:33:54 by maegaspa    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/23 15:21:32 by maegaspa    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
+.PHONY: all clean fclean re
+
 NAME = maegaspa.filler
-OBJ = maegaspa.filler
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-INCLUDE = ./includes
+INCLUDE = /includes/filler.h
 
-FILES = main\
-		filler\
+FILES = src/filler\
+		src/parse\
+		src/get_next_line\
+		src/util\
+		src/algo\
 
 SRC = $(addsuffix .c, $(FILES))
-OBJ = $(addsuffix .o, $(FILEs))
+OBJ = $(addsuffix .o, $(FILES))
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(INCLUDE)
-	@echo "-------------------- COMPILATION --------------------"
-	@$(MAKE) -C libft/
-	@$(CC) $(FLAGS) -o $(NAME) $(SRC) -I$(INCLUDE) -L libft/ -libft
+$(NAME): $(OBJ)
+	@echo "----------------------------------------"
+	@echo "\nGARROT LA MOUILLE se met au trabajo"
+	@echo "\n----------------------------------------"
+	@make -C libft/
+	@cp libft/libft.a ./$(NAME)
+	@ar rcs $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 clean:
 	@echo "----------------------------------------"
 	@echo "\nGARROT LA MOUILLE NETTOIE CE GENRE DE .o"
 	@echo "\n----------------------------------------"
 	@rm -f $(OBJ)
-	@$(MAKE) -C libft/ clean
+	@make clean -C libft/
 
 fclean: clean
 	@echo "--------------------------------------------"

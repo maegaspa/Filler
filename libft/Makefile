@@ -6,7 +6,7 @@
 #    By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 18:45:14 by maegaspa     #+#   ##    ##    #+#        #
-#    Updated: 2019/05/15 15:05:02 by maegaspa    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/12 16:11:13 by maegaspa    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -84,6 +84,8 @@ ft_htoa\
 ft_hhtoa\
 ft_uhhtoa\
 ft_uhtoa\
+ft_strndup\
+ft_strnlen\
 
 SOURCE = $(addsuffix .c, $(FILES))
 
