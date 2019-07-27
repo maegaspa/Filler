@@ -6,14 +6,14 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/13 15:42:35 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/20 18:35:46 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/27 17:49:29 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void            cnt_ini(t_cnt *cnt)
+void			cnt_ini(t_cnt *cnt)
 {
     cnt->y = 0;
 	cnt->x = 0;
@@ -25,7 +25,7 @@ void            cnt_ini(t_cnt *cnt)
 	cnt->low = 0;
 }
 
-void            size_ini(t_size *size)
+void			size_ini(t_size *size)
 {
     size->y = 0;
 	size->x = 0;
@@ -33,7 +33,7 @@ void            size_ini(t_size *size)
 	size->mapx = 0;
 }
 
-int						ft_atoi_2(char const *str)
+int				ft_atoi_2(char const *str)
 {
 	int		i;
 	int		nbr;
@@ -60,6 +60,7 @@ int				cut(char *str)
 
 	i = -1;
 	j = 0;
+	dest = ft_strnew(0);
 	while (str[++i])
 	{
 		if (ft_isdigit(str[i - 2]) && str[i - 1] == ' ' && ft_isdigit(str[i]))
@@ -68,5 +69,6 @@ int				cut(char *str)
 				dest[j++] = str[i++];
 		}
 	}
+	free(dest);
 	return (ft_atoi_2(dest));
 }

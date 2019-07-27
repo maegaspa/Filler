@@ -6,13 +6,26 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:08:06 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/20 18:35:44 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/25 17:38:37 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/filler.h"
-#include <stdio.h>
+
+/*int         main(void)
+{
+	char *str;
+	
+	printf("NTM\n");
+	while (get_next_line(0, &str) > 0)
+	{
+		//filler(fd);
+		printf("%s\n", str);
+		free(str);
+	}
+    return (0);
+}*/
 
 int         main(int ac, char **av)
 {
@@ -23,8 +36,8 @@ int         main(int ac, char **av)
 	else
 	{
 		fd = open(av[1], O_RDONLY);
-		//filler(fd);
-		open_map(fd);
+		filler(fd);
+		//open_map(fd);
 		close(fd);
 	}
     return (0);

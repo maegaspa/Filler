@@ -1,5 +1,6 @@
+START
 launched resources/players/maegaspa.filler
-$$$ exec p1 : [resources/players/maegaspa.filler]
+$$$ exec p1 : [resources/players/hcao.filler]
 launched resources/players/superjeannot.filler
 $$$ exec p2 : [resources/players/superjeannot.filler]
 Plateau 15 17:

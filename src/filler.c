@@ -6,14 +6,14 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:07:59 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/22 13:06:32 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/27 17:49:30 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	filler(int fd)
+void		filler(int fd)
 {
 	char	*line;
 	t_size	size;
@@ -23,11 +23,11 @@ void	filler(int fd)
 	size_ini(&size);
 	while (get_next_line(fd, &line) == 1)
 	{
-		player_one(line, &size, &cnt, fd);
-		map_piece_size(fd, &cnt, &size, line);
+		player_one(line, &size, &cnt);
+		map_piece_size(&cnt, &size, line);
 		if (cnt.m > 10)
-			map_parse(line, &size, &cnt, fd);
-		algo(&cnt, &size, line);
+			map_parse(line, &size, &cnt);
+		//algo(&cnt, &size, line);
 		cnt.m++;
 	}
 	printf("player = %d\n", cnt.player1);
@@ -37,9 +37,12 @@ void	filler(int fd)
 	printf("mapy = %d\n", size.mapy);
 	printf("piece x = %d\n", size.x);
 	printf("piece y = %d\n", size.y);
+	printf("low = %d\n", cnt.low);
+	printf("posy = %d\n", cnt.posy);
+	printf("posx = %d\n", cnt.posx);
 }
 
-void	open_map(int fd)
+void		open_map(int fd)
 {
 	char	*line;
 	int		i;
@@ -78,7 +81,7 @@ void	open_map(int fd)
 	if (yp > ymap && xp > xmap)
 		return (0);
 	if (cnt.player1)
-		//param de l'algo avec une variable qui prend 'o' ou 'x' selon si P1 ou pas
+	//param de l'algo avec une variable qui prend 'o' ou 'x' selon si P1 ou pas
 	//jouer en premier
 
 }*/
