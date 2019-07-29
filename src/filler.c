@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:07:59 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/27 17:49:30 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/29 05:27:20 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,6 +16,7 @@
 void		filler(int fd)
 {
 	char	*line;
+	int		**heat;
 	t_size	size;
 	t_cnt	cnt;
 
@@ -26,8 +27,13 @@ void		filler(int fd)
 		player_one(line, &size, &cnt);
 		map_piece_size(&cnt, &size, line);
 		if (cnt.m > 10)
-			map_parse(line, &size, &cnt);
-		//algo(&cnt, &size, line);
+		{
+			if (map_parse(line, &size, &cnt))
+			{
+				heat = create_heat(&cnt, &size);
+				place_piece(&cnt, &size, heat);
+			}
+		}
 		cnt.m++;
 	}
 	printf("player = %d\n", cnt.player1);
@@ -56,32 +62,18 @@ void		open_map(int fd)
 	}
 }
 
-/*int				read_map_pieces(int fd)
+int				place_piece(t_cnt *cnt, t_size *size, int **heat)
 {
-	t_cnt cnt;
+	int		rightheat;
+	int		retx;
+	int		rety;
 
-	cnt.x = -1;
-	while (str[++cnt.x])
-	{
-		get_next_line(0, &str);
-		if (cnt.x == 7)
-			player_one(str);
-		//map_parse(str);
-		ft_strdel(&str);
+	rightheat = 0;
+
+	if (heat[cnt->x][cnt->y] == rightheat)
+	{	
+		retx = cnt->x;
+		rety = cnt->y;
 	}
-	//place_piece(cnt.x, cnt.y, )
-    return (0);
-}*/
-
-/*int				place_piece(int xmap, int ymap, int xp, int yp, t_cnt cnt)
-{
-	char		*piece;
-
-
-	if (yp > ymap && xp > xmap)
-		return (0);
-	if (cnt.player1)
-	//param de l'algo avec une variable qui prend 'o' ou 'x' selon si P1 ou pas
-	//jouer en premier
-
-}*/
+	return(cnt)
+}

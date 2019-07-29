@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/11 15:23:02 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/27 17:49:27 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/29 05:27:19 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,8 @@ int				map_parse(char *line, t_size *size, t_cnt *cnt)
 		return (0);
 	while (cnt->y < size->mapy + 4)
 	{
+		// trouver un bail qui prend pas la merde entre deux maps
+		while (ft_strchr(line, "Plateau"))
 		if (line[cnt->y] != '.' && line[cnt->y] != 'X' && line[cnt->y] != 'O'
 			&& line[cnt->y] != 'x' && line[cnt->y] != 'o')
 			return (0);
@@ -64,9 +66,6 @@ int			map_piece_size(t_cnt *cnt, t_size *size, char *line)
 		size->x = ft_atoi_2(line);
 		size->y = cut(line);
 	}
-	//printf("piece x = %d\n", size->x);
-	//printf("piece y = %d\n", size->y);
-	//printf("LIGNE == %d\n", (14 + (2 * size->mapx) + size->x));
 	if ((cnt->m == (15 + (2 * size->mapx) + size->x)) && !(cnt->player1) && line[0] == 'P')
 	{
 		size->x = ft_atoi_2(line);

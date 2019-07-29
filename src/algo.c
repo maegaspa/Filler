@@ -6,81 +6,77 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/20 15:58:47 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/27 17:49:27 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/29 05:27:15 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-int				algo(t_cnt *cnt, t_size *size, char *line)
+int				**create_heat(t_cnt *cnt, t_size *size)
 {
 	int			**heat;
 
+	cnt->x = 0;
 	if (!(heat = malloc(sizeof(int *) * size->mapx)))
 		return (0);
 	while (cnt->x < size->mapx)
 	{
-		cnt.y = 0;
-		if (!(heat[x] = malloc(sizeof(int) * size->mapy)))
+		cnt->y = 0;
+		if (!(heat[cnt->x] = malloc(sizeof(int) * size->mapy)))
 			return (0);
 		while (cnt->y < size->mapy)
-		{
-			heat[cnt->x][cnt->y] = -2
-			cnt->y++;
-		}
+			heat[cnt->x][cnt->y++] = -1;
 		cnt->x++;
 	}
-	heat[size->enem_x][size->enem_y] = -1;
+	heat[size->posx][size->posy] = -2;
+	heat[size->enemx][size->enemy] = 0;
+	fill_heat(&size, &cnt, heat);
+	return (heat);
 }
 
-void	heatmap(int fd, t_size *size, t_cnt *cnt)
+void	fill_heat(t_size *size, t_cnt *cnt, int **heat)
 {
 	int		i;
-	int		k;
-	int		co_x;
-	int		co_y;
-	int		tmp;
 
-	tmp = size->mapx;
+	i = -1;
+	cnt_ini2(&cnt);
+	size->mxy = size->mapx;
 	if (size->mapy > size->mapx)
-		tmp = size->mapy;
-	co_x = size->enem_x;
-	co_y = size->enem_y;
-	cnt->x = 0;
-	cnt->k = 0;
-	while (tmp)
+		size->mxy = size->mapy;
+	while (++i < size->mxy)
 	{
-		cnt->x = 0;
 		while (cnt->x < size->mapx)
 		{
 			cnt->y = 0;
 			while (cnt->y < size->mapy)
 			{
-				if ((heat[cnt->x][cnt->y] == cnt->k - 1) && (cnt->x - 1 >= 0 && cnt->y - 1 >= 0 && cnt->x + 1 < size->mapy && cnt->y + 1 < size->mapx))
-				{
-					if (heat[cnt->x - 1][cnt->y - 1] == -2)
-						heat[cnt->x - 1][cnt->y - 1] = cnt->k;
-					if (heat[cnt->x - 1][cnt->y] == -2)
-						heat[cnt->x - 1][cnt->y] = cnt->k;
-					if (heat[cnt->x - 1][cnt->y + 1] == -2)
-						heat[cnt->x - 1][cnt->y + 1] = cnt->k;
-					if (heat[cnt->x][cnt->y - 1] == -2)
-						heat[cnt->x][cnt->y - 1] = cnt->k;
-					if (heat[cnt->x][cnt->y + 1] == -2)
-						heat[cnt->x][cnt->y + 1] = cnt->k;
-					if (heat[cnt->x + 1][cnt->y - 1] == -2)
-						heat[cnt->x + 1][cnt->y - 1] = cnt->k;
-					if (heat[cnt->x + 1][icnt->y] == -2)
-						heat[cnt->x + 1][icnt->y] = cnt->k;
-					if (heat[cnt->x + 1][cnt->y + 1] == -2)
-						heat[cnt->x + 1][cnt->y + 1] = cnt->k;
-				}
+				if ((heat[cnt->x][cnt->y] == cnt->p - 1))
+					place_heat(heat, &cnt);
 				cnt->y++;
 			}
 			cnt->x++;
 		}
-		cnt->k++;
-		tmp--;
+		cnt->p++;
 	}
+}
+
+void		place_heat(int	**heat, t_cnt *cnt)
+{
+	if (heat[cnt->x][cnt->y - 1] == -1)
+		heat[cnt->x][cnt->y - 1] = cnt->p;
+	if (heat[cnt->x][cnt->y + 1] == -1)
+		heat[cnt->x][cnt->y + 1] = cnt->p;
+	if (heat[cnt->x - 1][cnt->y - 1] == -1)
+		heat[cnt->x - 1][cnt->y - 1] = cnt->p;
+	if (heat[cnt->x - 1][cnt->y] == -1)
+		heat[cnt->x - 1][cnt->y] = cnt->p;
+	if (heat[cnt->x - 1][cnt->y + 1] == -1)
+		heat[cnt->x - 1][cnt->y + 1] = cnt->p;
+	if (heat[cnt->x + 1][cnt->y - 1] == -1)
+		heat[cnt->x + 1][cnt->y - 1] = cnt->p;
+	if (heat[cnt->x + 1][cnt->y] == -1)
+		heat[cnt->x + 1][cnt->y] = cnt->p;
+	if (heat[cnt->x + 1][cnt->y + 1] == -1)
+		heat[cnt->x + 1][cnt->y + 1] = cnt->p;
 }

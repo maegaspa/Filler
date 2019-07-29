@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/13 15:42:35 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/27 17:49:29 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/29 05:27:20 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,12 +17,20 @@ void			cnt_ini(t_cnt *cnt)
 {
     cnt->y = 0;
 	cnt->x = 0;
-	cnt->k = 0;
 	cnt->m = 0;
 	cnt->nb = 0;
 	cnt->player1 = 0;
 	cnt->star = 0;
 	cnt->low = 0;
+	cnt->posy = 0;
+	cnt->posx = 0;
+}
+
+void			cnt_ini2(t_cnt *cnt)
+{
+	cnt->p = 1
+	cnt->y = 0;
+	cnt->x = 0;
 }
 
 void			size_ini(t_size *size)
@@ -31,6 +39,8 @@ void			size_ini(t_size *size)
 	size->x = 0;
 	size->mapy = 0;
 	size->mapx = 0;
+	size->enemx = 0;
+	size->enemy = 0;
 }
 
 int				ft_atoi_2(char const *str)

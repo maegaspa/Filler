@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:29:00 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/27 17:49:29 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/29 05:27:17 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,13 +22,11 @@
 # include "get_next_line.h"
 # include <stdio.h>
 
-int						read_map_pieces(char *str);
-void					open_map(int fd);
 typedef struct			s_cnt
 {
 	int					y;
 	int					x;
-	int					k;
+	int					p;
 	int					m;
 	int					nb;
 	int					player1;
@@ -36,7 +34,6 @@ typedef struct			s_cnt
 	int					low;
 	int					posy;
 	int					posx;
-	int					k;
 }						t_cnt;
 typedef struct			s_size
 {
@@ -46,9 +43,12 @@ typedef struct			s_size
 	char				x;
 	int					mapy;
 	int					mapx;
-	int					enem_x;
-	int					enem_y;
+	int					enemx;
+	int					enemy;
+	int					mxy;
 }						t_size;
+int						read_map_pieces(char *str);
+void					open_map(int fd);
 void					cnt_ini(t_cnt *cnt);
 void					size_ini (t_size *size);
 int						player_one(char *line, t_size *size, t_cnt *cnt);
@@ -57,6 +57,9 @@ int						ft_atoi_2(char const *str);
 int						map_piece_size(t_cnt *cnt, t_size *size, char *line);
 void					filler(int fd);
 int						cut(char *str);
-int						algo(t_cnt *cnt, t_size *size, char *line);
+int						**create_heat(t_cnt *cnt, t_size *size);
+void					fill_heat(t_size *size, t_cnt *cnt, int **heat);
+void					place_heat(int	**heat, t_cnt *cnt);
+void					cnt_ini2(t_cnt *cnt);
 
 #endif
