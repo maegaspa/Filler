@@ -6,7 +6,7 @@
 #    By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/05/27 14:55:34 by maegaspa     #+#   ##    ##    #+#        #
-#    Updated: 2019/07/29 05:27:18 by maegaspa    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/31 17:30:53 by maegaspa    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,6 +20,7 @@ SRCS =  main.c \
 		src/filler.c \
 		src/parse.c \
 		src/util.c \
+		src/algo.c \
 
 OBJ = $(SRCS:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:29:00 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/29 05:27:17 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/02 16:43:46 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,6 +34,7 @@ typedef struct			s_cnt
 	int					low;
 	int					posy;
 	int					posx;
+	int					**heat;
 }						t_cnt;
 typedef struct			s_size
 {
@@ -57,9 +58,11 @@ int						ft_atoi_2(char const *str);
 int						map_piece_size(t_cnt *cnt, t_size *size, char *line);
 void					filler(int fd);
 int						cut(char *str);
-int						**create_heat(t_cnt *cnt, t_size *size);
-void					fill_heat(t_size *size, t_cnt *cnt, int **heat);
-void					place_heat(int	**heat, t_cnt *cnt);
+void					create_heat(t_cnt *cnt, t_size *size);
+void					fill_heat(t_size size, t_cnt cnt);
+void					place_heat(t_cnt cnt);
 void					cnt_ini2(t_cnt *cnt);
+t_cnt					place_piece(t_cnt *cnt, t_size *size, int **heat);
+void					aff_map(t_size *size, t_cnt *cnt);
 
 #endif
