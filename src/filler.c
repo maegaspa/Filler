@@ -6,12 +6,31 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:07:59 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/02 16:43:48 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/03 18:25:38 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
+
+void		piece_shape(char *line, t_size *size)
+{
+	int i;
+
+	i = -1;
+	if (line[0] == '.' || line[0] == '*')
+	{
+		while (line[++i])
+		{
+			if (line[i] == '.')
+				size->piece[i] = '.';
+			if (line[i] == '*')
+				size->piece[i] = '*';
+		}
+		size->piece[i] = '\0';
+		printf("size->piece = %s\n", size->piece);
+	}
+}
 
 void		filler(int fd)
 {
@@ -21,16 +40,14 @@ void		filler(int fd)
 
 	cnt_ini(&cnt);
 	size_ini(&size);
-	// BOUCLE CA VA PAS, lance toute les fonctions a chaque lignes
 	while (get_next_line(fd, &line) == 1)
 	{
 		player_one(line, &size, &cnt);
 		map_piece_size(&cnt, &size, line);
-		create_heat(&cnt, &size);
 		map_parse(line, &size, &cnt);
-		//printf("parse is good\n");
-		//heat = create_heat(&cnt, &size);
-		//place_piece(&cnt, &size, heat);
+		piece_shape(line, &size);
+		create_heat(&cnt, &size);
+		//place_piece(&cnt, &size);
 		cnt.m++;
 	}
 	aff_map(&size, &cnt);
@@ -64,7 +81,7 @@ void		open_map(int fd)
 
 //CHOPER UN TRUC POUR LES ETOILES / FORME DE LA PIECE
 
-/*void		place_piece(t_cnt *cnt, t_size *size, int **heat)
+/*void		place_piece(t_cnt *cnt, t_size *size)
 {
 	int		tmp;
 
@@ -74,15 +91,12 @@ void		open_map(int fd)
 		cnt->y = 0;
 		while (cnt->y < size->mapy)
 		{
-			//tmp = 
 			if (heat[cnt->posx][cnt->posy] == heat[cnt->x][cnt->y])
 			{
-			//	heat[cnt->x][cnt->y] = heat
-
+				heat[cnt->x][cnt->y] = heat
 			}
 			cnt->y++;
 		}
 		cnt->x++;
 	}
-}
-*/
+}*/

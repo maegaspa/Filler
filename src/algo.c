@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/20 15:58:47 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/02 16:43:42 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/03 18:25:41 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,11 +17,11 @@ void				create_heat(t_cnt *cnt, t_size *size)
 {
 	cnt->x = 0;
 
-	cnt->heat = malloc(sizeof(int *) * size->mapx);
+	cnt->heat = malloc(sizeof(int *) * size->mapx + 100);
 	while (cnt->x < size->mapx)
 	{
 		cnt->y = 0;
-		cnt->heat[cnt->x] = malloc(sizeof(int) * size->mapy + 1);
+		cnt->heat[cnt->x] = malloc(sizeof(int) * size->mapy + 100);
 		while (cnt->y < size->mapy)
 		{
 			cnt->heat[cnt->x][cnt->y] = -1;
@@ -63,18 +63,16 @@ void	fill_heat(t_size size, t_cnt cnt)
 	i = -1;
 	cnt_ini2(&cnt);
 	size.mapy > size.mapx ? (size.mxy = size.mapy) : (size.mxy = size.mapx);
-	/*size.mxy = size.mapx;
-	if (size.mapy > size.mapx)
-		size.mxy = size.mapy;*/
 	while (++i < size.mxy)
 	{
+		cnt.x = 0;
 		while (cnt.x < size.mapx)
 		{
 			cnt.y = 0;
 			while (cnt.y < size.mapy)
 			{
 				if (cnt.heat[cnt.x][cnt.y] == cnt.p - 1)
-					place_heat(cnt);
+					place_heat(&cnt);
 				cnt.y++;
 			}
 			cnt.x++;
@@ -83,22 +81,22 @@ void	fill_heat(t_size size, t_cnt cnt)
 	}
 }
 
-void		place_heat(t_cnt cnt)
+void		place_heat(t_cnt *cnt)
 {
-	if (cnt.heat[cnt.x][cnt.y - 1] == -1)
-		cnt.heat[cnt.x][cnt.y - 1] = cnt.p;
-	if (cnt.heat[cnt.x][cnt.y + 1] == -1)
-		cnt.heat[cnt.x][cnt.y + 1] = cnt.p;
-	if (cnt.heat[cnt.x - 1][cnt.y - 1] == -1)
-		cnt.heat[cnt.x - 1][cnt.y - 1] = cnt.p;
-	if (cnt.heat[cnt.x - 1][cnt.y] == -1)
-		cnt.heat[cnt.x - 1][cnt.y] = cnt.p;
-	if (cnt.heat[cnt.x - 1][cnt.y + 1] == -1)
-		cnt.heat[cnt.x - 1][cnt.y + 1] = cnt.p;
-	if (cnt.heat[cnt.x + 1][cnt.y - 1] == -1)
-		cnt.heat[cnt.x + 1][cnt.y - 1] = cnt.p;
-	if (cnt.heat[cnt.x + 1][cnt.y] == -1)
-		cnt.heat[cnt.x + 1][cnt.y] = cnt.p;
-	if (cnt.heat[cnt.x + 1][cnt.y + 1] == -1)
-		cnt.heat[cnt.x + 1][cnt.y + 1] = cnt.p;
+	if (cnt->heat[cnt->x][cnt->y - 1] == -1)
+		cnt->heat[cnt->x][cnt->y - 1] = cnt->p;
+	if (cnt->heat[cnt->x][cnt->y + 1] == -1)
+		cnt->heat[cnt->x][cnt->y + 1] = cnt->p;
+	if (cnt->heat[cnt->x - 1][cnt->y - 1] == -1)
+		cnt->heat[cnt->x - 1][cnt->y - 1] = cnt->p;
+	if (cnt->heat[cnt->x - 1][cnt->y] == -1)
+		cnt->heat[cnt->x - 1][cnt->y] = cnt->p;
+	if (cnt->heat[cnt->x - 1][cnt->y + 1] == -1)
+		cnt->heat[cnt->x - 1][cnt->y + 1] = cnt->p;
+	if (cnt->heat[cnt->x + 1][cnt->y - 1] == -1)
+		cnt->heat[cnt->x + 1][cnt->y - 1] = cnt->p;
+	if (cnt->heat[cnt->x + 1][cnt->y] == -1)
+		cnt->heat[cnt->x + 1][cnt->y] = cnt->p;
+	if (cnt->heat[cnt->x + 1][cnt->y + 1] == -1)
+		cnt->heat[cnt->x + 1][cnt->y + 1] = cnt->p;
 }

@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:29:00 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/02 16:43:46 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/03 18:25:38 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,8 @@ typedef struct			s_cnt
 	int					posy;
 	int					posx;
 	int					**heat;
+	int					retx;
+	int					rety;
 }						t_cnt;
 typedef struct			s_size
 {
@@ -47,6 +49,7 @@ typedef struct			s_size
 	int					enemx;
 	int					enemy;
 	int					mxy;
+	char				*piece;
 }						t_size;
 int						read_map_pieces(char *str);
 void					open_map(int fd);
@@ -60,9 +63,10 @@ void					filler(int fd);
 int						cut(char *str);
 void					create_heat(t_cnt *cnt, t_size *size);
 void					fill_heat(t_size size, t_cnt cnt);
-void					place_heat(t_cnt cnt);
+void					place_heat(t_cnt *cnt);
 void					cnt_ini2(t_cnt *cnt);
-t_cnt					place_piece(t_cnt *cnt, t_size *size, int **heat);
+void					place_piece(t_cnt *cnt, t_size *size);
 void					aff_map(t_size *size, t_cnt *cnt);
+void					piece_shape(char *line, t_size *size);
 
 #endif
