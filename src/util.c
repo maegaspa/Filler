@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/13 15:42:35 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/03 18:25:39 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/17 18:30:38 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 void			cnt_ini(t_cnt *cnt)
 {
-    cnt->y = 0;
+	cnt->y = 0;
 	cnt->x = 0;
 	cnt->m = 0;
 	cnt->nb = 0;
@@ -35,7 +35,7 @@ void			cnt_ini2(t_cnt *cnt)
 
 void			size_ini(t_size *size)
 {
-    size->y = 0;
+	size->y = 0;
 	size->x = 0;
 	size->mapy = 0;
 	size->mapx = 0;
@@ -45,8 +45,8 @@ void			size_ini(t_size *size)
 
 int				ft_atoi_2(char const *str)
 {
-	int		i;
-	int		nbr;
+	int			i;
+	int			nbr;
 
 	i = 0;
 	nbr = 0;
@@ -64,21 +64,22 @@ int				ft_atoi_2(char const *str)
 
 int				cut(char *str)
 {
-	int		i;
-	int		j;
-	char	*dest;
+	int			i;
+	int			j;
+	char		*dest;
 
 	i = -1;
 	j = 0;
-	dest = ft_strnew(0);
+	if (!(dest = malloc(sizeof(char) * j + 1)))
+		return (0);
 	while (str[++i])
 	{
 		if (ft_isdigit(str[i - 2]) && str[i - 1] == ' ' && ft_isdigit(str[i]))
-		{	
+		{
 			while (ft_isdigit(str[i]))
 				dest[j++] = str[i++];
 		}
 	}
-	free(dest);
+	//free(dest);
 	return (ft_atoi_2(dest));
 }

@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/11 15:23:02 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/03 18:25:40 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/17 18:30:38 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,7 +50,7 @@ int				map_parse(char *line, t_size *size, t_cnt *cnt)
 	return (1);
 }
 
-int			player_one(char *line, t_size *size, t_cnt *cnt)
+int				player_one(char *line, t_size *size, t_cnt *cnt)
 {
 	if (cnt->m == 0 && line[10] == '1')
 	{
@@ -67,7 +67,7 @@ int			player_one(char *line, t_size *size, t_cnt *cnt)
 	return (0);
 }
 
-int			map_piece_size(t_cnt *cnt, t_size *size, char *line)
+int				map_piece_size(t_cnt *cnt, t_size *size, char *line)
 {
 	if (cnt->m == 1)
 	{
@@ -79,7 +79,8 @@ int			map_piece_size(t_cnt *cnt, t_size *size, char *line)
 		size->x = ft_atoi_2(line);
 		size->y = cut(line);
 	}
-	if ((cnt->m == (6 + (2 * size->mapx) + size->x)) && !(cnt->player1) && line[0] == 'P')
+	if ((cnt->m == (6 + (2 * size->mapx) + size->x))
+		&& !(cnt->player1) && line[0] == 'P')
 	{
 		size->x = ft_atoi_2(line);
 		size->y = cut(line);

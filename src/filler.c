@@ -6,31 +6,62 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:07:59 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/03 18:25:38 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/17 18:30:37 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void		piece_shape(char *line, t_size *size)
+int			piece_shape(t_size *size, t_cnt *cnt, int fd)
 {
-	int i;
+	char	*line;
 
-	i = -1;
-	if (line[0] == '.' || line[0] == '*')
+	cnt->x = 0;
+	if (!(size->shape = malloc(sizeof(int *) * size->x)))
+		return (0);
+	while (cnt->x < size->x)
 	{
-		while (line[++i])
+		get_next_line(fd, &line);
+		cnt->y = 0;
+		if (!(size->shape[cnt->x] = malloc(sizeof(int) * size->y)))
+			return (0);
+		while (cnt->y < size->y && (line[0] == '*' || line[0] == '.'))
 		{
-			if (line[i] == '.')
-				size->piece[i] = '.';
-			if (line[i] == '*')
-				size->piece[i] = '*';
+			if (line[cnt->y] == '*')
+				size->shape[cnt->x][cnt->y] = 1;
+			if (line[cnt->y] == '.')
+				size->shape[cnt->x][cnt->y] = 2;
+			cnt->y++;
 		}
-		size->piece[i] = '\0';
-		printf("size->piece = %s\n", size->piece);
+		cnt->x++;
 	}
+	return (1);
 }
+
+/*void		is_placeable(t_cnt *cnt, t_size *size, char *line)
+{
+	int tmp;
+
+	tmp = 0;
+	cnt->x = 0;
+	while (cnt->x < size->mapx)
+	{
+		cnt->y = 0;
+		while (cnt->y < size->mapy)
+		{
+			if (cnt->heat[cnt->x][cnt->y] != -2
+				|| cnt->heat[cnt->x][cnt->y] != 1)
+			{
+				if (size->shape[cnt->x][cnt->y] == -2)
+				{
+
+				}
+			}
+
+		}
+	}
+}*/
 
 void		filler(int fd)
 {
@@ -45,12 +76,14 @@ void		filler(int fd)
 		player_one(line, &size, &cnt);
 		map_piece_size(&cnt, &size, line);
 		map_parse(line, &size, &cnt);
-		piece_shape(line, &size);
 		create_heat(&cnt, &size);
+		piece_shape(&size, &cnt, fd);
 		//place_piece(&cnt, &size);
+		free(line);
 		cnt.m++;
 	}
-	aff_map(&size, &cnt);
+	aff_map2(&size, &cnt);
+	aff_map(&size);
 	printf("player = %d\n", cnt.player1);
 	printf("ally = %c\n", size.ally);
 	printf("opponent = %c\n", size.opponent);
