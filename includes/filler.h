@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:29:00 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 18:30:39 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/02 17:52:40 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,6 @@ typedef struct			s_cnt
 	int					m;
 	int					nb;
 	int					player1;
-	int					star;
 	int					low;
 	int					posy;
 	int					posx;
@@ -55,10 +54,10 @@ int						read_map_pieces(char *str);
 void					open_map(int fd);
 void					cnt_ini(t_cnt *cnt);
 void					size_ini (t_size *size);
-int						player_one(char *line, t_size *size, t_cnt *cnt);
-int						map_parse(char *line, t_size *size, t_cnt *cnt);
+int						player_one(t_size *size, t_cnt *cnt, int fd);
+int						map_parse(t_size *size, t_cnt *cnt, char *line);
 int						ft_atoi_2(char const *str);
-int						map_piece_size(t_cnt *cnt, t_size *size, char *line);
+int						map_piece_size(t_size *size, t_cnt *cnt, int fd);
 void					filler(int fd);
 int						cut(char *str);
 int						create_heat(t_cnt *cnt, t_size *size);
@@ -69,6 +68,6 @@ void					place_piece(t_cnt *cnt, t_size *size);
 void					aff_map(t_size *size);
 void					aff_map2(t_size *size, t_cnt *cnt);
 int						piece_shape(t_size *size, t_cnt *cnt, int fd);
-void					is_placeable(t_cnt *cnt, t_size *size, char *line);
+void					is_placeable(t_cnt *cnt, t_size *size);
 
 #endif

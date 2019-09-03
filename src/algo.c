@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/20 15:58:47 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 18:30:36 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/02 17:52:38 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,6 @@ int				create_heat(t_cnt *cnt, t_size *size)
 		cnt->x++;
 	}
 	fill_heat(*size, *cnt);
-	//free(cnt->heat);
 	return (1);
 }
 
@@ -56,6 +55,7 @@ void	aff_map(t_size *size)
 		printf("\n");
 		x++;
 	}
+	printf("-------------\n");
 }
 
 void	aff_map2(t_size *size, t_cnt *cnt)
@@ -75,6 +75,7 @@ void	aff_map2(t_size *size, t_cnt *cnt)
 		printf("\n");
 		x++;
 	}
+	printf("-------------\n");
 }
 
 void	fill_heat(t_size size, t_cnt cnt)
