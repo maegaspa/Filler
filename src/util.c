@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/13 15:42:35 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/02 17:52:40 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/06 18:18:32 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,8 @@ void			cnt_ini(t_cnt *cnt)
 {
 	cnt->y = 0;
 	cnt->x = 0;
-	cnt->m = 0;
+	cnt->mx = 0;
+	cnt->my = 0;
 	cnt->nb = 0;
 	cnt->player1 = 0;
 	cnt->low = 0;

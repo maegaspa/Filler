@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:29:00 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/02 17:52:40 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/06 18:18:29 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,11 @@ typedef struct			s_cnt
 	int					y;
 	int					x;
 	int					p;
+	int					mx;
+	int					my;
 	int					m;
+	int					starx;
+	int					stary;
 	int					nb;
 	int					player1;
 	int					low;
@@ -69,5 +73,6 @@ void					aff_map(t_size *size);
 void					aff_map2(t_size *size, t_cnt *cnt);
 int						piece_shape(t_size *size, t_cnt *cnt, int fd);
 void					is_placeable(t_cnt *cnt, t_size *size);
+void					heat_apply(t_cnt *cnt, t_size *size, int tmp, int coef);
 
 #endif
