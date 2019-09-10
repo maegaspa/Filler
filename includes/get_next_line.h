@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/20 17:13:31 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/24 17:18:21 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/10 13:44:23 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@
 # include "../libft/libft.h"
 # include "filler.h"
 
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 1
 
 int		get_next_line(const int fd, char **line);
 

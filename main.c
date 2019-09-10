@@ -6,18 +6,18 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:08:06 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/06 18:18:30 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/10 16:24:40 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/filler.h"
 
-int         main()//int ac, char **av)
+int         main(int ac, char **av)
 {
 	int		fd;
 
-	/*if (ac != 2)
+	if (ac != 2)
 		return (0);
 	else
 	{
@@ -27,8 +27,8 @@ int         main()//int ac, char **av)
 		//printf("%d %d\n", cnt->retx, cnt->rety);
 		//create_heat(cnt, size);
 		close(fd);
-	}*/
-	fd = 0;
-	filler(fd);
+	}
+	/*fd = 0;
+	filler(fd);*/
     return (0);
 }
