@@ -21,6 +21,7 @@ SRCS =  main.c \
 		src/parse.c \
 		src/util.c \
 		src/algo.c \
+		src/aff.c
 
 OBJ = $(SRCS:%.c=%.o)
 

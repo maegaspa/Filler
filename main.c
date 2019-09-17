@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:08:06 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/10 16:24:40 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/11 17:16:47 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ int         main(int ac, char **av)
 {
 	int		fd;
 
-	if (ac != 2)
+    if (ac != 2)
 		return (0);
 	else
 	{

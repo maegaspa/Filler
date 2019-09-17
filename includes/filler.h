@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:29:00 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/10 16:18:11 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/11 13:43:26 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,9 @@
 
 typedef struct			s_cnt
 {
-	int					r;
+    int                 en;
+    int                 tmp;
+    int                 me;
 	int					**map;
 	int					y;
 	int					x;
@@ -36,7 +38,6 @@ typedef struct			s_cnt
 	int					stary;
 	int					nb;
 	int					player1;
-	int					low;
 	int					posy;
 	int					posx;
 	int					**heat;
@@ -52,9 +53,7 @@ typedef struct			s_size
 	char				x;
 	int					mapy;
 	int					mapx;
-	int					enemx;
-	int					enemy;
-	int					mxy;
+	int                 mxy;
 	int					**shape;
 }						t_size;
 int						read_map_pieces(char *str);
@@ -76,8 +75,13 @@ void					aff_map(t_size *size);
 void					aff_map2(t_size *size, t_cnt *cnt);
 int						piece_shape(t_size *size, t_cnt *cnt, int fd);
 void					is_placeable(t_cnt *cnt, t_size *size);
-void					heat_apply(t_cnt *cnt, t_size *size, int coef, int tmp);
+void					heat_apply(t_cnt *cnt, t_size *size);
 void					aff_map3(t_size *size, t_cnt *cnt);
-//void					top_left_star(t_cnt *cnt, t_size *size, int tmp, int coef);
+void					leftest_star(t_cnt *cnt, t_size *size);
+void                    ret_value(t_cnt *cnt, t_size *size);
+void                    multi_me(t_cnt *cnt, t_size *size);
+void					aff_map3(t_size *size, t_cnt *cnt);
+void					aff_map2(t_size *size, t_cnt *cnt);
+void					aff_map(t_size *size);
 
 #endif
