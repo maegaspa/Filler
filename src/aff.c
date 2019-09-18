@@ -49,8 +49,8 @@ void	aff_map3(t_size *size, t_cnt *cnt)
 	x = 0;
 	while (x < size->mapx)
 	{
-		y = 4;
-		while (y < size->mapy + 4)
+		y = 0;
+		while (y < size->mapy)
 		{
 			printf("%d ", cnt->map[x][y]);
 			y++;

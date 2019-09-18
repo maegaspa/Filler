@@ -27,7 +27,6 @@ void					is_placeable(t_cnt *cnt, t_size *size)
 			{
 				heat_apply(cnt, size);
 				multi_me(cnt, size);
-				leftest_star(cnt, size);
 				ret_value(cnt, size);
 			}
 			cnt->y++;
@@ -56,49 +55,16 @@ void					heat_apply(t_cnt *cnt, t_size *size)
 	}
 }
 
-void					leftest_star(t_cnt *cnt, t_size *size)
-{
-	cnt->mx = -1;
-	//cnt->m = 0;
-	while (++cnt->mx < size->x)
-	{
-		cnt->my = -1;
-		while (++cnt->my < size->y)
-		{
-			if (cnt->x + cnt->mx < size->mapx &&
-				cnt->y + cnt->my < size->mapy &&
-			    size->shape[cnt->mx][cnt->my] == 1 && cnt->m == 0)
-			{
-				cnt->starx = cnt->mx;
-				cnt->stary = cnt->my;
-				printf("starx = %d\n", cnt->starx);
-                printf("stary = %d\n", cnt->stary);
-				cnt->m = 1;
-			}
-		}
-	}
-}
-
 void					ret_value(t_cnt *cnt, t_size *size)
 {
 	if (size->coef < cnt->tmp && size->coef > 0 && cnt->me == 1 && cnt->en == 0)
 	{
-		cnt->tmp = size->coef;
-		cnt->mx = 0;
-		while (cnt->mx++ < size->x)
+		if (cnt->x + cnt->mx - 1 < size->mapx &&
+			cnt->y + cnt->my - 1 < size->mapy && cnt->me == 1 && cnt->en == 0)
 		{
-			cnt->my = 0;
-			while (cnt->my++ < size->y)
-			{
-				if (cnt->x + cnt->mx < size->mapx && cnt->y + cnt->my < size->mapy
-					&& cnt->me == 1 && cnt->en == 0)
-				{
-					cnt->retx = cnt->x - cnt->starx;
-					cnt->rety = cnt->y - cnt->stary;
-					printf("retx = %d\n", cnt->retx);
-					printf("rety = %d\n", cnt->rety);
-				}
-			}
+			cnt->tmp = size->coef;
+			cnt->retx = cnt->x;
+			cnt->rety = cnt->y;
 		}
 	}
 }
@@ -117,13 +83,13 @@ int						filler(int fd)
 		create_heat(&cnt, &size);
 		if (!(piece_shape(&size, &cnt, fd)))
 			return (0);
-		aff_map2(&size, &cnt);
-		aff_map(&size);
+		//aff_map2(&size, &cnt);
+		//aff_map(&size);
 		is_placeable(&cnt, &size);
 		ft_putnbr(cnt.retx);
 		ft_putchar(' ');
 		ft_putnbr(cnt.rety);
 		ft_putchar('\n');
-		aff_map3(&size, &cnt);
+		//aff_map3(&size, &cnt);
 	}
 }

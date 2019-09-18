@@ -26,7 +26,7 @@ int				create_heat(t_cnt *cnt, t_size *size)
 		while (cnt->y < size->mapy)
 		{
 			cnt->heat[cnt->x][cnt->y] = -1;
-			if (cnt->map[cnt->x][cnt->y + 4] == 1)
+			if (cnt->map[cnt->x][cnt->y] == 1)
 				cnt->heat[cnt->x][cnt->y] = 1;
 			cnt->y++;
 		}
@@ -51,9 +51,9 @@ void			fill_heat(t_size size, t_cnt cnt)
 			cnt.y = 0;
 			while (cnt.y < size.mapy)
 			{
-				if (cnt.map[cnt.x][cnt.y + 4] == 1)
+				if (cnt.map[cnt.x][cnt.y] == 1)
 					cnt.heat[cnt.x][cnt.y] = 1;
-				if (cnt.x > 0 && cnt.y > 0 && cnt.x < size.mapx &&
+				if (cnt.x >= 0 && cnt.y >= 0 && cnt.x < size.mapx &&
 					cnt.y < size.mapy && cnt.heat[cnt.x][cnt.y] == cnt.p - 1)
 					place_heat(&cnt, &size);
 				cnt.y++;
@@ -66,21 +66,22 @@ void			fill_heat(t_size size, t_cnt cnt)
 
 void			place_heat(t_cnt *cnt, t_size *size)
 {
-	if (cnt->heat[cnt->x][cnt->y - 1] == -1)
+	if (cnt->y - 1 >= 0 && cnt->heat[cnt->x][cnt->y - 1] == -1)
 		cnt->heat[cnt->x][cnt->y - 1] = cnt->p;
-	if (cnt->heat[cnt->x][cnt->y + 1] == -1)
+	if (cnt->y + 1 < size->mapy && cnt->heat[cnt->x][cnt->y + 1] == -1)
 		cnt->heat[cnt->x][cnt->y + 1] = cnt->p;
-	if (cnt->heat[cnt->x - 1][cnt->y - 1] == -1)
+	if (cnt->y - 1 >= 0 && cnt->x - 1 >= 0 &&
+		cnt->heat[cnt->x - 1][cnt->y - 1] == -1)
 		cnt->heat[cnt->x - 1][cnt->y - 1] = cnt->p;
-	if (cnt->x - 1 > 0 && cnt->heat[cnt->x - 1][cnt->y] == -1)
+	if (cnt->x - 1 >= 0 && cnt->heat[cnt->x - 1][cnt->y] == -1)
 		cnt->heat[cnt->x - 1][cnt->y] = cnt->p;
-	if (cnt->y < size->mapy && cnt->heat[cnt->x - 1][cnt->y + 1] == -1)
+	if (cnt->y + 1 < size->mapy && cnt->x - 1 >= 0 &&
+		cnt->heat[cnt->x - 1][cnt->y + 1] == -1)
 		cnt->heat[cnt->x - 1][cnt->y + 1] = cnt->p;
-	if (cnt->x + 1 < size->mapx && cnt->y - 1 < size->mapy
-		&& cnt->heat[cnt->x + 1][cnt->y - 1] == -1)
+	if (cnt->y - 1 >= 0 && cnt->x + 1 < size->mapx &&
+		cnt->heat[cnt->x + 1][cnt->y - 1] == -1)
 		cnt->heat[cnt->x + 1][cnt->y - 1] = cnt->p;
-	if (cnt->x + 1 < size->mapx && cnt->y < size->mapy
-		&& cnt->heat[cnt->x + 1][cnt->y] == -1)
+	if (cnt->x + 1 < size->mapx && cnt->heat[cnt->x + 1][cnt->y] == -1)
 		cnt->heat[cnt->x + 1][cnt->y] = cnt->p;
 	if (cnt->x + 1 < size->mapx && cnt->y + 1 < size->mapy
 		&& cnt->heat[cnt->x + 1][cnt->y + 1] == -1)
@@ -97,17 +98,15 @@ void			multi_me(t_cnt *cnt, t_size *size)
 		cnt->my = 0;
 		while (cnt->my < size->y)
 		{
-			if (cnt->x == 2 && cnt->y == 3)
-				printf("cnt->map[%d + %d][%d + %d] = %d\n", cnt->x, cnt->mx, cnt->y + 4, cnt->my ,cnt->map[cnt->x + cnt->mx][cnt->y + 4 + cnt->my]);
 			if (cnt->x + cnt->mx < size->mapx &&
-				cnt->y + 4 + cnt->my < size->mapy + 4 &&
+				cnt->y + cnt->my < size->mapy &&
 				size->shape[cnt->mx][cnt->my] == 1 &&
-				cnt->map[cnt->x + cnt->mx][cnt->y + 4 + cnt->my] == -2)
+				cnt->map[cnt->x + cnt->mx][cnt->y + cnt->my] == -2)
 				cnt->me++;
 			if (cnt->x + cnt->mx < size->mapx &&
-				cnt->y + 4 + cnt->my < size->mapy + 4
+				cnt->y + cnt->my < size->mapy
 				&& size->shape[cnt->mx][cnt->my] == 1 &&
-				cnt->map[cnt->x + cnt->mx][cnt->y + 4 + cnt->my] == 1)
+				cnt->map[cnt->x + cnt->mx][cnt->y + cnt->my] == 1)
 				cnt->en++;
 			cnt->my++;
 		}

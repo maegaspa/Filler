@@ -20,24 +20,24 @@ int				map_parse(t_size *size, t_cnt *cnt, int fd, char *li)
 		return (0);
 	while (++cnt->x < size->mapx)
 	{
-		if (!(get_next_line(fd, &li)))
+		if ((cnt->y = 3) && !(get_next_line(fd, &li)))
 			return (0);
-		cnt->y = 3;
+		cnt->y4 = -1;
 		if (!(cnt->map[cnt->x] = malloc(sizeof(int) * size->mapy)))
 			return (0);
-		while (++cnt->y < size->mapy + 4)
+		while (++cnt->y < size->mapy + 4 && ++cnt->y4 < size->mapy)
 		{
 			cnt->map[cnt->x][cnt->y] = 0;
 			if ((li[cnt->y] == 'o' || li[cnt->y] == 'O') && cnt->player1 == 1)
-				cnt->map[cnt->x][cnt->y] = -2;
+				cnt->map[cnt->x][cnt->y4] = -2;
 			if ((li[cnt->y] == 'x' || li[cnt->y] == 'X') && cnt->player1 == 2)
-				cnt->map[cnt->x][cnt->y] = -2;
+				cnt->map[cnt->x][cnt->y4] = -2;
 			if (cnt->player1 == 1 && (li[cnt->y] == 'X' || li[cnt->y] == 'x'))
-				cnt->map[cnt->x][cnt->y] = 1;
+				cnt->map[cnt->x][cnt->y4] = 1;
 			if (cnt->player1 == 2 && (li[cnt->y] == 'o' || li[cnt->y] == 'O'))
-				cnt->map[cnt->x][cnt->y] = 1;
+				cnt->map[cnt->x][cnt->y4] = 1;
 		}
-		ft_strdel(&li);
+		//ft_strdel(&li);
 	}
 	return (1);
 }
@@ -61,7 +61,7 @@ int				player_one(t_size *size, t_cnt *cnt, int fd)
 		size->ally = 'X';
 		size->opponent = 'O';
 	}
-	ft_strdel(&line);
+	//ft_strdel(&line);
 	return (1);
 }
 
@@ -78,9 +78,9 @@ int				map_piece_size(t_size *size, t_cnt *cnt, int fd)
 		size->mapx = ft_atoi_2(line);
 		size->mapy = cut(line);
 	}
-	ft_strdel(&line);
+	//ft_strdel(&line);
 	get_next_line(fd, &line);
-	ft_strdel(&line);
+	//ft_strdel(&line);
 	map_parse(size, cnt, fd, line);
 	if (!(get_next_line(fd, &line)))
 		return (0);
@@ -89,7 +89,7 @@ int				map_piece_size(t_size *size, t_cnt *cnt, int fd)
 		size->x = ft_atoi_2(line);
 		size->y = cut(line);
 	}
-	ft_strdel(&line);
+	//ft_strdel(&line);
 	return (1);
 }
 
@@ -117,6 +117,6 @@ int				piece_shape(t_size *size, t_cnt *cnt, int fd)
 		}
 		cnt->x++;
 	}
-	ft_strdel(&line);
+	//ft_strdel(&line);
 	return (1);
 }

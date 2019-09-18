@@ -13,10 +13,10 @@
 
 #include "includes/filler.h"
 
-int         main(int ac, char **av)
+int         main()//int ac, char **av)
 {
 	int		fd;
-
+/*
     if (ac != 2)
 		return (0);
 	else
@@ -27,8 +27,8 @@ int         main(int ac, char **av)
 		//printf("%d %d\n", cnt->retx, cnt->rety);
 		//create_heat(cnt, size);
 		close(fd);
-	}
-	/*fd = 0;
-	filler(fd);*/
+	}*/
+	fd = 0;
+	filler(fd);
     return (0);
 }

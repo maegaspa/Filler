@@ -29,6 +29,7 @@ typedef struct			s_cnt
     int                 me;
 	int					**map;
 	int					y;
+	int					y4;
 	int					x;
 	int					p;
 	int					mx;

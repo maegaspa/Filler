@@ -81,6 +81,6 @@ int				cut(char *str)
 				dest[j++] = str[i++];
 		}
 	}
-	free(dest);
+	//free(dest);
 	return (ft_atoi_2(dest));
 }
