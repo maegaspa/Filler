@@ -27,6 +27,9 @@ void			cnt_ini(t_cnt *cnt)
 	cnt->posx = 0;
 	cnt->retx = 0;
 	cnt->rety = 0;
+	cnt->first_heat = 0;
+	cnt->first_map = 0;
+	cnt->first_shape = 0;
 }
 
 void			cnt_ini2(t_cnt *cnt)
@@ -51,15 +54,17 @@ int				ft_atoi_2(char const *str)
 
 	i = 0;
 	nbr = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
-			|| str[i] == '\f' || str[i] == '\r' || ft_isalpha(str[i])
-			|| str[i] == '%' || str[i] == '0' || str[i] == '+' || str[i] == '-'
-			|| str[i] == '#' || str[i] == 'l' || str[i] == 'h' || str[i] == 'L')
+	while (str[i] == ' ' || ft_isalpha(str[i]))
 		i++;
 	if (str[i] == '+')
 		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-		nbr = nbr * 10 + str[i++] - '0';
+	//dprintf(2, "*[%s]*\n", str);
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = nbr * 10 + str[i] - '0';
+		//dprintf(2, "[%d]-[%c]\n", nbr, str[i]);
+		i++;
+	}
 	return (nbr);
 }
 
@@ -67,6 +72,7 @@ int				cut(char *str)
 {
 	int			i;
 	int			j;
+	int			nbr;
 	char		*dest;
 
 	i = -1;
@@ -81,6 +87,49 @@ int				cut(char *str)
 				dest[j++] = str[i++];
 		}
 	}
-	//free(dest);
-	return (ft_atoi_2(dest));
+	nbr = ft_atoi_2(dest);
+	ft_strdel(&dest);
+	return (nbr);
+}
+
+void		ft_free_heat(t_cnt *cnt, t_size *size)
+{
+	int i;
+
+	if (cnt->heat)
+	{
+		i = -1;
+    	while (++i < size->mapy - 1)
+    		free(cnt->heat[i]);
+    	free(cnt->heat);
+    	cnt->heat = NULL;
+	}
+}
+
+void		ft_free_shape(t_size *size)
+{
+	int i;
+
+   	if (size->shape)
+	{
+		i = -1;
+		while (++i < size->x)
+            free(size->shape[i]);
+        free(size->shape);
+        size->shape = NULL;
+	}
+}
+
+void	ft_free_map(t_cnt *cnt, t_size *size)
+{
+	int i;
+
+	if (cnt->map)
+    {
+    	i = -1;
+        while (++i < size->mapy - 1)
+			free(cnt->map[i]);
+		free(cnt->map);
+		cnt->map = NULL;
+	}
 }

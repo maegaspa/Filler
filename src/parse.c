@@ -16,18 +16,20 @@
 int				map_parse(t_size *size, t_cnt *cnt, int fd, char *li)
 {
 	cnt->x = -1;
-	if (!(cnt->map = malloc(sizeof(int *) * size->mapx)))
-		return (0);
+	if (cnt->first_map == 0)
+		if (!(cnt->map = malloc(sizeof(int *) * size->mapx)))
+			return (0);
 	while (++cnt->x < size->mapx)
 	{
 		if ((cnt->y = 3) && !(get_next_line(fd, &li)))
 			return (0);
 		cnt->y4 = -1;
-		if (!(cnt->map[cnt->x] = malloc(sizeof(int) * size->mapy)))
-			return (0);
-		while (++cnt->y < size->mapy + 4 && ++cnt->y4 < size->mapy)
+		if (cnt->first_map == 0)
+			if (!(cnt->map[cnt->x] = malloc(sizeof(int) * size->mapy)))
+				return (0);
+		while (++cnt->y < (size->mapy + 4) && ++cnt->y4 < size->mapy)
 		{
-			cnt->map[cnt->x][cnt->y] = 0;
+			cnt->map[cnt->x][cnt->y4] = 0;
 			if ((li[cnt->y] == 'o' || li[cnt->y] == 'O') && cnt->player1 == 1)
 				cnt->map[cnt->x][cnt->y4] = -2;
 			if ((li[cnt->y] == 'x' || li[cnt->y] == 'X') && cnt->player1 == 2)
@@ -37,12 +39,13 @@ int				map_parse(t_size *size, t_cnt *cnt, int fd, char *li)
 			if (cnt->player1 == 2 && (li[cnt->y] == 'o' || li[cnt->y] == 'O'))
 				cnt->map[cnt->x][cnt->y4] = 1;
 		}
-		//ft_strdel(&li);
+		ft_strdel(&li);
 	}
+	cnt->first_map = 1;
 	return (1);
 }
 
-int				player_one(t_size *size, t_cnt *cnt, int fd)
+int				player_one(t_cnt *cnt, int fd)
 {
 	char		*line;
 
@@ -51,23 +54,21 @@ int				player_one(t_size *size, t_cnt *cnt, int fd)
 	if (line[10] == '1')
 	{
 		cnt->player1 = 1;
-		size->ally = 'O';
-		size->opponent = 'X';
+		ft_strdel(&line);
 		return (0);
 	}
-	if (line[10] == '2')
+	else if (line[10] == '2')
 	{
 		cnt->player1 = 2;
-		size->ally = 'X';
-		size->opponent = 'O';
+		ft_strdel(&line);
 	}
-	//ft_strdel(&line);
 	return (1);
 }
 
 int				map_piece_size(t_size *size, t_cnt *cnt, int fd)
 {
 	char		*line;
+	char		**split;
 	int			i;
 
 	i = -1;
@@ -75,23 +76,44 @@ int				map_piece_size(t_size *size, t_cnt *cnt, int fd)
 		return (0);
 	if (line[0] == 'P' && line[1] == 'l')
 	{
-		size->mapx = ft_atoi_2(line);
-		size->mapy = cut(line);
+		split = ft_strsplit(line, ' ');
+    	size->mapx = ft_atoi(split[1]);
+    	size->mapy = ft_atoi(split[2]);
+    	free(split[0]);
+    	free(split[1]);
+    	free(split[2]);
+    	free(split);
 	}
-	//ft_strdel(&line);
-	get_next_line(fd, &line);
-	//ft_strdel(&line);
+	ft_strdel(&line);
+	if (!(get_next_line(fd, &line)))
+    		return (0);
+	ft_strdel(&line);
 	map_parse(size, cnt, fd, line);
 	if (!(get_next_line(fd, &line)))
 		return (0);
 	if (line[0] == 'P' && line[1] == 'i')
 	{
-		size->x = ft_atoi_2(line);
-		size->y = cut(line);
+		split = ft_strsplit(line, ' ');
+		size->x = ft_atoi(split[1]);
+		size->y = ft_atoi(split[2]);
+		free(split[0]);
+        free(split[1]);
+        free(split[2]);
+        free(split);
 	}
-	//ft_strdel(&line);
+	ft_strdel(&line);
 	return (1);
 }
+
+/*void            split(char **split)
+{
+	split = ft_strsplit(line, ' ');
+    size->mapx = ft_atoi(split[1]);
+    size->mapy = ft_atoi(split[2]);
+    free(split[0]);
+    free(split[1]);
+    free(split[2]);
+}*/
 
 int				piece_shape(t_size *size, t_cnt *cnt, int fd)
 {
@@ -116,7 +138,7 @@ int				piece_shape(t_size *size, t_cnt *cnt, int fd)
 			cnt->y++;
 		}
 		cnt->x++;
+		ft_strdel(&line);
 	}
-	//ft_strdel(&line);
 	return (1);
 }

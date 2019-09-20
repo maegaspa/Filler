@@ -16,13 +16,15 @@
 int				create_heat(t_cnt *cnt, t_size *size)
 {
 	cnt->x = 0;
-	if (!(cnt->heat = malloc(sizeof(int *) * size->mapx)))
-		return (0);
+	if (cnt->first_heat == 0)
+		if (!(cnt->heat = malloc(sizeof(int *) * size->mapx)))
+			return (0);
 	while (cnt->x < size->mapx)
 	{
 		cnt->y = 0;
-		if (!(cnt->heat[cnt->x] = malloc(sizeof(int) * size->mapy)))
-			return (0);
+		if (cnt->first_heat == 0)
+			if (!(cnt->heat[cnt->x] = malloc(sizeof(int) * size->mapy)))
+				return (0);
 		while (cnt->y < size->mapy)
 		{
 			cnt->heat[cnt->x][cnt->y] = -1;
@@ -32,6 +34,7 @@ int				create_heat(t_cnt *cnt, t_size *size)
 		}
 		cnt->x++;
 	}
+	cnt->first_heat = 1;
 	fill_heat(*size, *cnt);
 	return (1);
 }
@@ -104,8 +107,8 @@ void			multi_me(t_cnt *cnt, t_size *size)
 				cnt->map[cnt->x + cnt->mx][cnt->y + cnt->my] == -2)
 				cnt->me++;
 			if (cnt->x + cnt->mx < size->mapx &&
-				cnt->y + cnt->my < size->mapy
-				&& size->shape[cnt->mx][cnt->my] == 1 &&
+				cnt->y + cnt->my < size->mapy &&
+				size->shape[cnt->mx][cnt->my] == 1 &&
 				cnt->map[cnt->x + cnt->mx][cnt->y + cnt->my] == 1)
 				cnt->en++;
 			cnt->my++;

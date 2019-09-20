@@ -76,20 +76,22 @@ int						filler(int fd)
 
 	cnt_ini(&cnt);
 	size_ini(&size);
-	player_one(&size, &cnt, fd);
+	player_one(&cnt, fd);
 	while (42)
 	{
 		map_piece_size(&size, &cnt, fd);
 		create_heat(&cnt, &size);
 		if (!(piece_shape(&size, &cnt, fd)))
-			return (0);
-		//aff_map2(&size, &cnt);
-		//aff_map(&size);
+			break ;
 		is_placeable(&cnt, &size);
+		ft_free_shape(&size);
 		ft_putnbr(cnt.retx);
 		ft_putchar(' ');
 		ft_putnbr(cnt.rety);
 		ft_putchar('\n');
-		//aff_map3(&size, &cnt);
 	}
+	ft_free_heat(&cnt, &size);
+	ft_free_map(&cnt, &size);
+	//ft_free_shape(&size);
+	return (0);
 }

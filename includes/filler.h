@@ -44,12 +44,13 @@ typedef struct			s_cnt
 	int					**heat;
 	int					retx;
 	int					rety;
+	int					first_heat;
+	int					first_map;
+	int					first_shape;
 }						t_cnt;
 typedef struct			s_size
 {
 	int					coef;
-	char				opponent;
-	char				ally;
 	char				y;
 	char				x;
 	int					mapy;
@@ -61,7 +62,7 @@ int						read_map_pieces(char *str);
 void					open_map(int fd);
 void					cnt_ini(t_cnt *cnt);
 void					size_ini (t_size *size);
-int						player_one(t_size *size, t_cnt *cnt, int fd);
+int						player_one(t_cnt *cnt, int fd);
 int						map_parse(t_size *size, t_cnt *cnt, int fd, char *line);
 int						ft_atoi_2(char const *str);
 int						map_piece_size(t_size *size, t_cnt *cnt, int fd);
@@ -84,5 +85,9 @@ void                    multi_me(t_cnt *cnt, t_size *size);
 void					aff_map3(t_size *size, t_cnt *cnt);
 void					aff_map2(t_size *size, t_cnt *cnt);
 void					aff_map(t_size *size);
+void					ft_free_heat(t_cnt *cnt, t_size *size);
+void					ft_free_shape(t_size *size);
+void					ft_free_map(t_cnt *cnt, t_size *size);
+
 
 #endif
