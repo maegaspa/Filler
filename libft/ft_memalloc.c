@@ -17,7 +17,7 @@ void	*ft_memalloc(size_t size)
 {
 	char *urmother;
 
-	if (!(urmother = (char *)malloc(sizeof(char) * size)))
+	if (!(urmother = (char *)malloc(sizeof(char) * size + 1)))
 		return (NULL);
 	ft_bzero(urmother, size + 1);
 	return (urmother);

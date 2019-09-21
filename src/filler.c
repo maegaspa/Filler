@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/27 15:07:59 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/11 17:16:48 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/21 17:03:46 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,9 +45,9 @@ void					heat_apply(t_cnt *cnt, t_size *size)
 		while (cnt->my < size->y)
 		{
 			if (cnt->x + cnt->mx < size->mapx &&
-				cnt->y + cnt->my < size->mapy &&
-				size->shape[cnt->mx][cnt->my] == 1 &&
-				cnt->heat[cnt->x + cnt->mx][cnt->y + cnt->my] != 1)
+					cnt->y + cnt->my < size->mapy &&
+					size->shape[cnt->mx][cnt->my] == 1 &&
+					cnt->heat[cnt->x + cnt->mx][cnt->y + cnt->my] != 1)
 				size->coef += cnt->heat[cnt->x + cnt->mx][cnt->y + cnt->my];
 			cnt->my++;
 		}
@@ -60,7 +60,8 @@ void					ret_value(t_cnt *cnt, t_size *size)
 	if (size->coef < cnt->tmp && size->coef > 0 && cnt->me == 1 && cnt->en == 0)
 	{
 		if (cnt->x + cnt->mx - 1 < size->mapx &&
-			cnt->y + cnt->my - 1 < size->mapy && cnt->me == 1 && cnt->en == 0)
+				cnt->y + cnt->my - 1 < size->mapy &&
+				cnt->me == 1 && cnt->en == 0)
 		{
 			cnt->tmp = size->coef;
 			cnt->retx = cnt->x;
@@ -92,6 +93,6 @@ int						filler(int fd)
 	}
 	ft_free_heat(&cnt, &size);
 	ft_free_map(&cnt, &size);
-	//ft_free_shape(&size);
+	free(size.shape);
 	return (0);
 }

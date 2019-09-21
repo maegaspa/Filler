@@ -58,11 +58,9 @@ int				ft_atoi_2(char const *str)
 		i++;
 	if (str[i] == '+')
 		i++;
-	//dprintf(2, "*[%s]*\n", str);
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		nbr = nbr * 10 + str[i] - '0';
-		//dprintf(2, "[%d]-[%c]\n", nbr, str[i]);
 		i++;
 	}
 	return (nbr);
@@ -90,46 +88,4 @@ int				cut(char *str)
 	nbr = ft_atoi_2(dest);
 	ft_strdel(&dest);
 	return (nbr);
-}
-
-void		ft_free_heat(t_cnt *cnt, t_size *size)
-{
-	int i;
-
-	if (cnt->heat)
-	{
-		i = -1;
-    	while (++i < size->mapy - 1)
-    		free(cnt->heat[i]);
-    	free(cnt->heat);
-    	cnt->heat = NULL;
-	}
-}
-
-void		ft_free_shape(t_size *size)
-{
-	int i;
-
-   	if (size->shape)
-	{
-		i = -1;
-		while (++i < size->x)
-            free(size->shape[i]);
-        free(size->shape);
-        size->shape = NULL;
-	}
-}
-
-void	ft_free_map(t_cnt *cnt, t_size *size)
-{
-	int i;
-
-	if (cnt->map)
-    {
-    	i = -1;
-        while (++i < size->mapy - 1)
-			free(cnt->map[i]);
-		free(cnt->map);
-		cnt->map = NULL;
-	}
 }

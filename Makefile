@@ -15,13 +15,12 @@
 
 NAME = maegaspa.filler
 
-SRCS =  main.c \
+SRCS =  src/main.c \
 		src/get_next_line.c \
 		src/filler.c \
 		src/parse.c \
 		src/util.c \
 		src/algo.c \
-		src/aff.c
 
 OBJ = $(SRCS:%.c=%.o)
 

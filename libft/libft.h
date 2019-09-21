@@ -6,7 +6,7 @@
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 14:57:03 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/24 15:30:26 by maegaspa    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/21 18:47:17 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,8 +76,8 @@ void				ft_strclr(char *s);
 void				ft_strdel(char **as);
 char				*ft_itoa(int n);
 char				*ft_strrev(char *str);
-size_t  			ft_strnlen(const char *s, size_t maxlen);
-char    			*ft_strndup(const char *s, size_t n);
+size_t				ft_strnlen(const char *s, size_t maxlen);
+char				*ft_strndup(const char *s, size_t n);
 typedef struct		s_list
 {
 	void			*content;
@@ -90,8 +90,6 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-//static int			leng(long long n);
-//static int			ones(long long n);
 char				*ft_lltoa(long long n);
 char				*ft_ulltoa(unsigned long long n);
 char				*ft_utoa(long long n);
