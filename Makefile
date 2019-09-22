@@ -13,7 +13,7 @@
 
 .PHONY: all clean fclean re
 
-NAME = maegaspa.filler
+NAME = resources/players/maegaspa.filler
 
 SRCS =  src/main.c \
 		src/get_next_line.c \
